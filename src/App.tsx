@@ -1,10 +1,11 @@
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import GlobalStyle from "./shared/Global.styled";
 import Header from "./components/header/Header";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
 import LifeStyle from "./components/pages/LifeStyle";
 import Music from "./components/pages/Music";
 import Photodiary from "./components/pages/Photodiary";
 import Travel from "./components/pages/Travel";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Photodiary />} />
         <Route path="/" element={<Travel />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
