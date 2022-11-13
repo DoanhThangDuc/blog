@@ -9,6 +9,7 @@ import {
   TwitterIcon,
   InstagramIcon,
   SocialContainer,
+  Icons
 } from "./Footer.styled";
 
 function Footer() {
@@ -21,9 +22,11 @@ function Footer() {
       <Socials>
         <SocialContainer>
           <p>Follow</p>
-          <FacebookIcon />
-          <TwitterIcon />
-          <InstagramIcon />
+          <Icons>
+            <FacebookIcon />
+            <TwitterIcon />
+            <InstagramIcon />
+          </Icons>
         </SocialContainer>
       </Socials>
     </FooterStyled>

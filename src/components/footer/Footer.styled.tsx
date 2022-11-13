@@ -51,3 +51,8 @@ export const InstagramIcon = styled(CiInstagram)`
   color: #626262;
   cursor: pointer;
 `;
+export const Icons = styled.div`
+  width: 5rem;
+  display: inline-flex;
+  justify-content: space-between;
+`;
