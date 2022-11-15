@@ -5,7 +5,6 @@ import { CiInstagram } from "react-icons/ci";
 export const FooterStyled = styled.div`
   display: inline-flex;
   width: 100vw;
-  position: absolute;
   bottom: 0;
   height: 4rem;
   background-color: #f0f0f0;

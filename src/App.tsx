@@ -6,6 +6,7 @@ import Music from "./components/pages/Music";
 import Photodiary from "./components/pages/Photodiary";
 import Travel from "./components/pages/Travel";
 import Footer from "./components/footer/Footer";
+import FirstPost from "./homepage/FirstPost";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/photodiary" element={<Photodiary />} />
         <Route path="/travel" element={<Travel />} />
       </Routes>
+      <FirstPost />
       <Footer />
     </BrowserRouter>
   );
