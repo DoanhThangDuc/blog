@@ -8,7 +8,10 @@ export const PostStyled = styled.div`
   overflow: hidden;
 `;
 export const PostContainer = styled.div``;
-export const PostImg = styled.div``;
+
+export const PostImg = styled.img<{ src: string }>`
+  display: ${(props) => (props.src ? "block" : "none")};
+`;
 export const PostSubject = styled.p`
   color: #b8b2a4;
   padding: 1.7rem 0 0.7rem;
@@ -19,7 +22,7 @@ export const PostTitle = styled.h2`
   font-size: 30px;
 `;
 export const PostContent = styled.div`
-  padding-top: 1.8rem;
+  padding-top: 2rem;
   font-weight: 500;
   line-height: 1.4rem;
   & p {

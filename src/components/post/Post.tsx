@@ -18,19 +18,13 @@ export interface PostProps {
 function Post({ img, title, subject, description }: PostProps) {
   return (
     <PostStyled>
-      <PostImg>
-        <img src={img || "/images/postimg.png"} alt="post-picture" />
-      </PostImg>
+      <PostImg src={img ? img : ""}></PostImg>
 
       <PostContainer>
-        <PostSubject>{subject ? subject : "LIFESTYLE"}</PostSubject>
-        <PostTitle>{title || "More than just a music festival"}</PostTitle>
+        <PostSubject>{subject ? subject : ""}</PostSubject>
+        <PostTitle>{title ? title : ""}</PostTitle>
         <PostContent>
-          <p>
-            {description === "empty"
-              ? ""
-              : "The perfect weekend getawayThe perfect weekend getawayThe perfect weekend getawayThe perfect weekend getawayThe perfect weekendgetawayThe perfect weekend getawayThe perfect weekend getawayTheperfect weekend getawayThe perfecweekend getawayThe perfect weekendperfect weekend getawayThe perfecweekend getawayThe perfect weekendperfect weekend getawayThe perfecweekend getawayThe perfect weekend"}
-          </p>
+          <p>{description ? description : ""}</p>
         </PostContent>
       </PostContainer>
     </PostStyled>
