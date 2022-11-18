@@ -19,7 +19,6 @@ function App() {
         <Route path="/photodiary" element={<Photodiary />} />
         <Route path="/travel" element={<Travel />} />
       </Routes>
-      <FirstPost />
       <Footer />
     </BrowserRouter>
   );

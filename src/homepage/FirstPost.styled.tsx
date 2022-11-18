@@ -5,9 +5,10 @@ export const FirstPostImg = styled.div`
   width: 100vw;
   display: inline-flex;
   justify-content: center;
-  & img {
-    width: calc(100vw - 8.75rem);
-  }
+`;
+export const Img = styled.img`
+  width: calc(100vw - 8.75rem);
+  display: ${(props) => (props.src ? "block" : "none")};
 `;
 export const FirstPostContent = styled.div`
   width: calc(100vw - 18.75rem);

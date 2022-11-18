@@ -7,34 +7,20 @@ import {
   Comment,
   Content,
   FirstPostStyled,
+  Img,
 } from "./FirstPost.styled";
+import { PostProps } from "../components/post/Post";
 
-function FirstPost() {
+function FirstPost({ img, title, subject, description }: PostProps) {
   return (
     <FirstPostStyled>
       <FirstPostImg>
-        <img src="/images/firstPost.png" />
+        <Img src={img} alt="post-image" />
       </FirstPostImg>
-
       <FirstPostContent>
-        <Subject>PHOTODIARY</Subject>
-        <Title>The perfect weekend getaway</Title>
-        <Content>
-          The perfect weekend getawayThe perfect weekend getawayThe perfect
-          weekend getawayThe perfect weekend getawayThe perfect weekend
-          getawayThe perfect weekend getawayThe perfect weekend getawayThe
-          perfect weekend getawayThe perfect weekend getawayThe perfect weekend
-          getawayThe perfect weekend getawaygetawayThe perfect weekend
-          getawayThe perfect weekend getawayThe perfect weekend getawayThe
-          perfect weekend getawayThe perfect weekend getawayThe pegetawayThe
-          perfect weekend getawayThe perfect weekend getawayThe perfect weekend
-          getawayThe perfect weekend getawayThe perfect weekend getawayThe
-          pegetawayThe perfect weekend getawayThe perfect weekend getawayThe
-          perfect weekend getawayThe perfect weekend getawayThe perfect weekend
-          getawayThe pegetawayThe perfect weekend getawayThe perfect weekend
-          getawayThe perfect weekend getawayThe perfect weekend getawayThe
-          perfect weekend getawayThe pe
-        </Content>
+        <Subject>{subject}</Subject>
+        <Title>{title}</Title>
+        <Content>{description}</Content>
         <Comment>LEAVE A COMMENT</Comment>
       </FirstPostContent>
     </FirstPostStyled>
