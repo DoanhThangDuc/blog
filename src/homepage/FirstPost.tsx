@@ -15,12 +15,12 @@ function FirstPost({ img, title, subject, description }: PostProps) {
   return (
     <FirstPostStyled>
       <FirstPostImg>
-        <Img src={img ? img : ""} alt="post-image" />
+        <Img src={img} alt="post-image" />
       </FirstPostImg>
       <FirstPostContent>
-        <Subject>{subject ? subject : ""}</Subject>
-        <Title>{title ? title : ""}</Title>
-        <Content>{description ? description : ""}</Content>
+        <Subject>{subject}</Subject>
+        <Title>{title}</Title>
+        <Content>{description}</Content>
         <Comment>LEAVE A COMMENT</Comment>
       </FirstPostContent>
     </FirstPostStyled>
