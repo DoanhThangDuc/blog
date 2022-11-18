@@ -18,13 +18,12 @@ export interface PostProps {
 function Post({ img, title, subject, description }: PostProps) {
   return (
     <PostStyled>
-      <PostImg src={img ? img : ""}></PostImg>
-
+      <PostImg src={img}></PostImg>
       <PostContainer>
-        <PostSubject>{subject ? subject : ""}</PostSubject>
-        <PostTitle>{title ? title : ""}</PostTitle>
+        <PostSubject>{subject}</PostSubject>
+        <PostTitle>{title}</PostTitle>
         <PostContent>
-          <p>{description ? description : ""}</p>
+          <p>{description}</p>
         </PostContent>
       </PostContainer>
     </PostStyled>
