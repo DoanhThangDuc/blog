@@ -8,14 +8,15 @@ import {
   PostStyled,
 } from "./Post.styled";
 
-export interface PostProps {
+export interface PostModal {
+  id: number;
   img: string;
   title: string;
   subject: string;
   description: string;
 }
 
-function Post({ img, title, subject, description }: PostProps) {
+function Post({ img, title, subject, description }: PostModal) {
   return (
     <PostStyled>
       <PostImg src={img}></PostImg>

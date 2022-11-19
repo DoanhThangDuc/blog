@@ -1,12 +1,11 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import GlobalStyle from "./shared/Global.styled";
 import Header from "./components/header/Header";
-import LifeStyle from "./components/pages/LifeStyle";
-import Music from "./components/pages/Music";
-import Photodiary from "./components/pages/Photodiary";
-import Travel from "./components/pages/Travel";
+import LifeStyleContainer from "./containers/LifeStyleContainer";
+import Music from "./pages/Music";
+import Photodiary from "./pages/Photodiary";
+import Travel from "./pages/Travel";
 import Footer from "./components/footer/Footer";
-import FirstPost from "./homepage/FirstPost";
 
 function App() {
   return (
@@ -14,7 +13,7 @@ function App() {
       <GlobalStyle />
       <Header />
       <Routes>
-        <Route path="/" element={<LifeStyle />} />
+        <Route path="/" element={<LifeStyleContainer />} />
         <Route path="/music" element={<Music />} />
         <Route path="/photodiary" element={<Photodiary />} />
         <Route path="/travel" element={<Travel />} />

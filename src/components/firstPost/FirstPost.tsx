@@ -9,9 +9,9 @@ import {
   FirstPostStyled,
   Img,
 } from "./FirstPost.styled";
-import { PostProps } from "../components/post/Post";
+import { PostModal } from "../post/Post";
 
-function FirstPost({ img, title, subject, description }: PostProps) {
+function FirstPost({ img, title, subject, description }: PostModal) {
   return (
     <FirstPostStyled>
       <FirstPostImg>
