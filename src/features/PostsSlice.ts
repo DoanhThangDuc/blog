@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PostModal } from "../components/post/Post";
 
-const initialState = [
+const posts = [
   {
     id: 2,
     img: "/images/postimg.png",
@@ -53,7 +53,7 @@ const initialState = [
 ];
 export const postsSlice = createSlice({
   name: "posts",
-  initialState: initialState as PostModal[],
+  initialState: posts as PostModal[],
   reducers: {},
 });
 
