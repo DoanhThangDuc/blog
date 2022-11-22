@@ -5,7 +5,6 @@ import LifeStyleContainer from "./containers/LifeStyleContainer";
 import Music from "./pages/Music";
 import Photodiary from "./pages/Photodiary";
 import Travel from "./pages/Travel";
-import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
         <Route path="/photodiary" element={<Photodiary />} />
         <Route path="/travel" element={<Travel />} />
       </Routes>
-      <Footer />
     </BrowserRouter>
   );
 }

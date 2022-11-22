@@ -6,7 +6,9 @@ export default {
   title: "Post",
   component: Post,
 } as Meta<PostModal>;
-const Template: Story<PostModal> = (args) => <Post {...args} />;
+const Template: Story<PostModal & { openDetails: (id: number) => void }> = (
+  args
+) => <Post {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
