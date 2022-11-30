@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   PostDetailStyled, Container, BodyContainer, PostBody, PersionalDetails,
   References, ImgContainer, Img, Details, Subject, Title, Content, ImgDetails,
   Quote, Share, ImgDetail, GoogleIcon, Ticon, SocialContainer, RefContainer,
-  RefTitle, RefPosts, RefPost, RefTitleContainer, ReturnBtn, Return
+  RefTitle, RefPosts, RefPost, RefTitleContainer
 } from "./PostDetails.styled";
 import Post, { PostModal } from "../../components/post/Post";
 import PostsChart from "../../components/postsChart/PostsChart";
@@ -12,6 +13,7 @@ import {
   TwitterIcon,
 } from "../../components/footer/Footer.styled";
 import Comment from "../../components/comment/Comment";
+import Header from "../../components/header/Header";
 
 export interface PostDetailsProps {
   img?: string;
@@ -20,102 +22,94 @@ export interface PostDetailsProps {
   description?: string;
 }
 function PostDetails({
-  img,
-  title,
-  subject,
-  description,
-  closeDetails,
-  openDetails,
   suggestedPosts,
-  scrollToTop,
-}: PostDetailsProps & {
-  closeDetails: () => void;
-  openDetails: (id: number) => void;
-  suggestedPosts: PostModal[];
-  scrollToTop: number;
-}) {
+  id,
+  ...post
+}: PostDetailsProps & { suggestedPosts: PostModal[]; id: string | undefined }) {
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [scrollToTop]);
+  }, [id]);
 
   return (
-    <PostDetailStyled>
-      <Container>
-        <ImgContainer>
-          <Img src={img} alt="post-image" />
-        </ImgContainer>
-        <BodyContainer>
-          <Details>
-            <PostBody>
-              <Subject>{subject}</Subject>
-              <Title>{title}</Title>
-              <Content>{description}</Content>
-              <ImgDetails>
-                <ImgDetail src="" />
-                <ImgDetail src="" />
-                <ImgDetail src="" />
-              </ImgDetails>
-              <Quote>{description}</Quote>
-              <Content>{description}</Content>
-              <Share>
-                <SocialContainer>
-                  <p>SHARE</p>
-                  <FacebookIcon size={"1.2rem"} color="#bab4b4" />
-                  <TwitterIcon size={"1.2rem"} color="#bab4b4" />
-                  <GoogleIcon size={"1.2rem"} />
-                  <Ticon size={"1.2rem"} />
-                </SocialContainer>
-              </Share>
-            </PostBody>
-            <PersionalDetails>
-              <Post
-                openDetails={openDetails}
-                id={1}
-                img="/images/coffee.png"
-                title="About me"
-                subject="Title"
-                description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris"
-              />
-              <PostsChart
-                title="A day exploring the Alps"
-                commentNumber={2}
-                src="/images/banner.png"
-              />
-            </PersionalDetails>
-          </Details>
-        </BodyContainer>
-      </Container>
-      <ReturnBtn onClick={() => closeDetails()}>
-        <Return>Return</Return>
-      </ReturnBtn>
-      <References>
-        <RefContainer>
-          <RefTitleContainer>
-            <RefTitle>YOU MAY ALSO LIKE</RefTitle>
-          </RefTitleContainer>
-          <RefPosts>
-            {suggestedPosts.map((post) => (
-              <RefPost key={post.id}>
+    <>
+      <Header />
+      <PostDetailStyled>
+        <Container>
+          <ImgContainer>
+            <Img src={post.img} alt="post-image" />
+          </ImgContainer>
+          <BodyContainer>
+            <Details>
+              <PostBody>
+                <Subject>{post.subject}</Subject>
+                <Title>{post.title}</Title>
+                <Content>{post.description}</Content>
+                <ImgDetails>
+                  <ImgDetail src="" />
+                  <ImgDetail src="" />
+                  <ImgDetail src="" />
+                </ImgDetails>
+                <Quote>{post.description}</Quote>
+                <Content>{post.description}</Content>
+                <Share>
+                  <SocialContainer>
+                    <p>SHARE</p>
+                    <FacebookIcon size={"1.2rem"} color="#bab4b4" />
+                    <TwitterIcon size={"1.2rem"} color="#bab4b4" />
+                    <GoogleIcon size={"1.2rem"} />
+                    <Ticon size={"1.2rem"} />
+                  </SocialContainer>
+                </Share>
+              </PostBody>
+              <PersionalDetails>
                 <Post
-                  openDetails={openDetails}
-                  id={post.id}
-                  img={post.img}
-                  title={post.title}
-                  subject=""
-                  description=""
+                  id={1}
+                  img="/images/coffee.png"
+                  title="About me"
+                  subject="Title"
+                  description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris"
                 />
-              </RefPost>
-            ))}
-          </RefPosts>
-        </RefContainer>
-      </References>
-      <Comment
-        src="/images/coffee.png"
-        author="John Doe"
-        description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo!"
-        numberComment={1}
-      />
-    </PostDetailStyled>
+                <PostsChart
+                  title="A day exploring the Alps"
+                  commentNumber={2}
+                  src="/images/banner.png"
+                />
+              </PersionalDetails>
+            </Details>
+          </BodyContainer>
+        </Container>
+        <References>
+          <RefContainer>
+            <RefTitleContainer>
+              <RefTitle>YOU MAY ALSO LIKE</RefTitle>
+            </RefTitleContainer>
+            <RefPosts>
+              {suggestedPosts.map((post) => {
+                return (
+                  <Link to={`/posts/${post.id}`} key={post.id}>
+                    <RefPost key={post.id}>
+                      <Post
+                        id={post.id}
+                        img={post.img}
+                        title={post.title}
+                        subject={post.subject}
+                        description={post.description}
+                      />
+                    </RefPost>
+                  </Link>
+                );
+              })}
+            </RefPosts>
+          </RefContainer>
+        </References>
+        <Comment
+          src="/images/coffee.png"
+          author="John Doe"
+          description="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo!"
+          numberComment={1}
+        />
+      </PostDetailStyled>
+    </>
   );
 }
 

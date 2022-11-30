@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import Home from "../pages/Home/Home";
 import { RootState } from "../store";
 
-function LifeStyleContainer() {
+function MusicContainer() {
   const posts = useSelector((state: RootState) => state.posts).filter(
-    (post) => post.subject === "LIFESTYLE"
+    (post) => post.subject === "MUSIC"
   );
   return <Home posts={posts} />;
 }
 
-export default LifeStyleContainer;
+export default MusicContainer;

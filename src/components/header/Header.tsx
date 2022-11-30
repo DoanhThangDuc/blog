@@ -1,18 +1,20 @@
 import React from "react";
-import { Link, NavLink,  } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Logo, Button, HeaderStyled } from "./Header.styled";
 
 function Header() {
   return (
     <HeaderStyled>
-      <Logo>
-        <img src="/images/minimo-logo.png" />
-      </Logo>
+      <Link to="/">
+        <Logo>
+          <img src="/images/minimo-logo.png" alt="img" />
+        </Logo>
+      </Link>
       <Button>
-        <Link to="/">LIFESTYLE</Link>
-        <NavLink to="photodiary">PHOTODIARY</NavLink>
-        <NavLink to="music">MUSIC</NavLink>
-        <NavLink to="travel">TRAVEL</NavLink>
+        <NavLink to="/lifestyle">LIFESTYLE</NavLink>
+        <NavLink to="/photodiary">PHOTODIARY</NavLink>
+        <NavLink to="/music">MUSIC</NavLink>
+        <NavLink to="/travel">TRAVEL</NavLink>
       </Button>
     </HeaderStyled>
   );

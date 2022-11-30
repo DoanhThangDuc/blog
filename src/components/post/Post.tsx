@@ -16,16 +16,9 @@ export interface PostModal {
   description: string;
 }
 
-function Post({
-  id,
-  img,
-  title,
-  subject,
-  description,
-  openDetails,
-}: PostModal & { openDetails: (id: number) => void }) {
+function Post({ id, img, title, subject, description }: PostModal) {
   return (
-    <PostStyled onClick={() => openDetails(id)}>
+    <PostStyled>  
       <PostImg src={img}></PostImg>
       <PostContainer>
         <PostSubject>{subject}</PostSubject>
