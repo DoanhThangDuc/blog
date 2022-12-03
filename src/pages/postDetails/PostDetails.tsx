@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   PostDetailStyled, Container, BodyContainer, PostBody, PersionalDetails,
@@ -26,6 +26,7 @@ function PostDetails({
   id,
   ...post
 }: PostDetailsProps & { suggestedPosts: PostModal[]; id: string | undefined }) {
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
@@ -113,4 +114,4 @@ function PostDetails({
   );
 }
 
-export default PostDetails;
+export default memo(PostDetails);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Post, { PostModal } from "../../components/post/Post";
 import { Link } from "react-router-dom";
 import { HomeStyled, PostContainer } from "./Home.styled";
@@ -21,4 +21,4 @@ function Home({ posts }: { posts: PostModal[] }) {
   );
 }
 
-export default Home;
+export default memo(Home);
