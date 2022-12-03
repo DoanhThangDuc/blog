@@ -1,28 +1,21 @@
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
 import PostDetails from "../pages/postDetails/PostDetails";
+import { selectCurrentPost, selectSuggestPosts } from "../selector";
 import { RootState } from "../store";
 
-function PostDetailsContainer() {
+const mapStateToProps = (state: RootState) => ({ state: state });
+
+function PostDetailsContainer({ state }: { state: RootState }) {
   const { id } = useParams();
-  const posts = useSelector((state: RootState) => state.posts);
-  const currentPost = useMemo(() => {
-    const result = posts.find((post) => {
-      return post.id.toString() === id;
-    });
-    return result;
-  }, [id]);
-
-  const suggestedPosts = useMemo(() => {
-    return posts
-      .filter((post) => post.subject === currentPost?.subject)
-      .slice(0, 3);
-  }, []);
-
   return (
-    <PostDetails {...currentPost} suggestedPosts={suggestedPosts} id={id} />
+    <PostDetails
+      suggestedPosts={selectSuggestPosts(state, id)}
+      id={id}
+      {...selectCurrentPost(state, id)}
+    />
   );
 }
 
-export default PostDetailsContainer;
+export default connect(mapStateToProps)(PostDetailsContainer);

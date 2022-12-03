@@ -25,8 +25,10 @@ function PostDetails({
   suggestedPosts,
   id,
   ...post
-}: PostDetailsProps & { suggestedPosts: PostModal[]; id: string | undefined }) {
-  
+}: PostDetailsProps & {
+  suggestedPosts: PostModal[];
+  id: string | number | undefined;
+}) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
