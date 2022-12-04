@@ -5,7 +5,7 @@ import PostDetails from "../pages/postDetails/PostDetails";
 import { selectCurrentPost, selectSuggestPosts } from "../selector";
 import { RootState } from "../store";
 
-const mapStateToProps = (state: RootState) => ({ state: state });
+export const mapStateToProps = (state: RootState) => ({ state: state });
 
 function PostDetailsContainer({ state }: { state: RootState }) {
   const { id } = useParams();

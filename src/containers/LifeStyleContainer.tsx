@@ -1,13 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import Home from "../pages/Home/Home";
+import { selectPostsBySubject } from "../selector";
 import { RootState } from "../store";
+import { mapStateToProps } from "./PostDetailsContainer";
 
-function LifeStyleContainer() {
-  const posts = useSelector((state: RootState) => state.posts).filter(
-    (post) => post.subject === "LIFESTYLE"
-  );
-  return <Home posts={posts} />;
+function LifeStyleContainer({ state }: { state: RootState }) {
+  return <Home posts={selectPostsBySubject(state, "LIFESTYLE")} />;
 }
 
-export default LifeStyleContainer;
+export default connect(mapStateToProps)(LifeStyleContainer);

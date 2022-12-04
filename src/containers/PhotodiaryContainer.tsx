@@ -1,13 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import Home from "../pages/Home/Home";
+import { selectPostsBySubject } from "../selector";
 import { RootState } from "../store";
+import { mapStateToProps } from "./PostDetailsContainer";
 
-function PhotodiaryContainer() {
-  const posts = useSelector((state: RootState) => state.posts).filter(
-    (post) => post.subject === "PHOTODIARY"
-  );
-  return <Home posts={posts} />;
+function PhotodiaryContainer({ state }: { state: RootState }) {
+  return <Home posts={selectPostsBySubject(state, "PHOTODIARY")} />;
 }
 
-export default PhotodiaryContainer;
+export default connect(mapStateToProps)(PhotodiaryContainer);

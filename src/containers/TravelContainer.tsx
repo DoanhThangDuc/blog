@@ -1,13 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import Home from "../pages/Home/Home";
+import { selectPostsBySubject } from "../selector";
 import { RootState } from "../store";
+import { mapStateToProps } from "./PostDetailsContainer";
 
-function TravelContainer() {
-  const posts = useSelector((state: RootState) => state.posts).filter(
-    (post) => post.subject === "TRAVEL"
-  );
-  return <Home posts={posts} />;
+function TravelContainer({ state }: { state: RootState }) {
+  return <Home posts={selectPostsBySubject(state, "TRAVEL")} />;
 }
 
-export default TravelContainer;
+export default connect(mapStateToProps)(TravelContainer);

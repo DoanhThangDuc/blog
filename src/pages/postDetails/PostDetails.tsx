@@ -24,7 +24,7 @@ export interface PostDetailsProps {
 function PostDetails({
   suggestedPosts,
   id,
-  ...post
+  ...postDetails
 }: PostDetailsProps & {
   suggestedPosts: PostModal[];
   id: string | number | undefined;
@@ -39,21 +39,21 @@ function PostDetails({
       <PostDetailStyled>
         <Container>
           <ImgContainer>
-            <Img src={post.img} alt="post-image" />
+            <Img src={postDetails.img} alt="post-image" />
           </ImgContainer>
           <BodyContainer>
             <Details>
               <PostBody>
-                <Subject>{post.subject}</Subject>
-                <Title>{post.title}</Title>
-                <Content>{post.description}</Content>
+                <Subject>{postDetails.subject}</Subject>
+                <Title>{postDetails.title}</Title>
+                <Content>{postDetails.description}</Content>
                 <ImgDetails>
                   <ImgDetail src="" />
                   <ImgDetail src="" />
                   <ImgDetail src="" />
                 </ImgDetails>
-                <Quote>{post.description}</Quote>
-                <Content>{post.description}</Content>
+                <Quote>{postDetails.description}</Quote>
+                <Content>{postDetails.description}</Content>
                 <Share>
                   <SocialContainer>
                     <p>SHARE</p>
