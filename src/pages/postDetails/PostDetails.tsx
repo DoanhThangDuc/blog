@@ -15,19 +15,14 @@ import {
 import Comment from "../../components/comment/Comment";
 import Header from "../../components/header/Header";
 
-export interface PostDetailsProps {
-  img?: string;
-  title?: string;
-  subject?: string;
-  description?: string;
-}
 function PostDetails({
   suggestedPosts,
   id,
-  ...postDetails
-}: PostDetailsProps & {
+  postDetails
+}: {
   suggestedPosts: PostModal[];
   id: string | number | undefined;
+  postDetails: PostModal | undefined
 }) {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,21 +34,21 @@ function PostDetails({
       <PostDetailStyled>
         <Container>
           <ImgContainer>
-            <Img src={postDetails.img} alt="post-image" />
+            <Img src={postDetails?.img} alt="post-image" />
           </ImgContainer>
           <BodyContainer>
             <Details>
               <PostBody>
-                <Subject>{postDetails.subject}</Subject>
-                <Title>{postDetails.title}</Title>
-                <Content>{postDetails.description}</Content>
+                <Subject>{postDetails?.subject}</Subject>
+                <Title>{postDetails?.title}</Title>
+                <Content>{postDetails?.description}</Content>
                 <ImgDetails>
                   <ImgDetail src="" />
                   <ImgDetail src="" />
                   <ImgDetail src="" />
                 </ImgDetails>
-                <Quote>{postDetails.description}</Quote>
-                <Content>{postDetails.description}</Content>
+                <Quote>{postDetails?.description}</Quote>
+                <Content>{postDetails?.description}</Content>
                 <Share>
                   <SocialContainer>
                     <p>SHARE</p>

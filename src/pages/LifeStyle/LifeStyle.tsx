@@ -1,7 +1,6 @@
 import React from "react";
 import Post, { PostModal } from "../../components/post/Post";
 import { LifeStylePage, PostContainer } from "./LifeStyle.styled";
-import PostDetails, { PostDetailsProps } from "../postDetails/PostDetails";
 
 function LifeStyle({ posts }: { posts: PostModal[] }) {
   return (

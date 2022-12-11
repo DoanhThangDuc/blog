@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import GlobalStyle from "./shared/Global.styled";
 import HomeContainer from "./containers/HomeContainer";
 import PostDetailsContainer from "./containers/PostDetailsContainer";
@@ -9,17 +9,29 @@ import PhotodiaryContainer from "./containers/PhotodiaryContainer";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <GlobalStyle />
-      <Routes>
-        <Route path="/" element={<HomeContainer />} />
-        <Route path="/posts/:id" element={<PostDetailsContainer />} />
-        <Route path="/lifestyle" element={<LifeStyleContainer />} />
-        <Route path="/music" element={<MusicContainer />} />
-        <Route path="/photodiary" element={<PhotodiaryContainer />} />
-        <Route path="/travel" element={<TravelContainer />} />
-      </Routes>
-    </BrowserRouter>
+      <Switch>
+        <Route path="/" exact>
+          <HomeContainer />
+        </Route>
+        <Route path="/posts/:id">
+          <PostDetailsContainer />
+        </Route>
+        <Route path="/lifestyle">
+          <LifeStyleContainer />
+        </Route>
+        <Route path="/music">
+          <MusicContainer />
+        </Route>
+        <Route path="/photodiary">
+          <PhotodiaryContainer />
+        </Route>
+        <Route path="/travel">
+          <TravelContainer />
+        </Route>
+      </Switch>
+    </>
   );
 }
 

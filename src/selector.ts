@@ -3,7 +3,8 @@ import { RootState } from "./store";
 import { PostModal } from "./components/post/Post";
 
 const selectAllPosts = (state: RootState) => state.posts;
-const selectPostById = (state: RootState, id: string | undefined) => id;
+const selectPostById = (state: RootState, id: string | number | undefined) =>
+  id;
 
 export const selectPosts = createSelector([selectAllPosts], (posts) => posts);
 
