@@ -6,27 +6,30 @@ export const PostStyled = styled.div`
   margin-bottom: 20px;
   box-sizing: border-box;
   overflow: hidden;
+  cursor: pointer;
 `;
-export const PostContainer = styled.div``;
-
+export const PostContainer = styled.div`
+  width: 100%;
+`;
 export const PostImg = styled.img<{ src: string }>`
   display: ${(props) => (props.src ? "block" : "none")};
+  width: 100%;
 `;
 export const PostSubject = styled.p`
   color: #b8b2a4;
-  padding: 1.7rem 0 0.7rem;
+  padding-top: 1.7em;
 `;
 export const PostTitle = styled.h2`
   color: #626262;
   font-weight: 300;
-  font-size: 30px;
+  font-size: 1.875em;
+  padding: 0.7rem 0 2rem 0;
 `;
 export const PostContent = styled.div`
-  padding-top: 2rem;
   font-weight: 500;
-  line-height: 1.4rem;
+  line-height: 1.4em;
   & p {
-    font-size: 14px;
+    font-size: 0.875em;
     color: #7a7878;
   }
 `;

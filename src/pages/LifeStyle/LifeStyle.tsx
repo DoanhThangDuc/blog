@@ -1,6 +1,5 @@
 import React from "react";
-import { PostModal } from "../../components/post/Post";
-import Post from "../../components/post/Post";
+import Post, { PostModal } from "../../components/post/Post";
 import { LifeStylePage, PostContainer } from "./LifeStyle.styled";
 
 function LifeStyle({ posts }: { posts: PostModal[] }) {
@@ -8,7 +7,7 @@ function LifeStyle({ posts }: { posts: PostModal[] }) {
     <LifeStylePage>
       <PostContainer>
         {posts.map((post) => (
-          <Post {...post} />
+          <Post {...post} key={post.id} />
         ))}
       </PostContainer>
     </LifeStylePage>

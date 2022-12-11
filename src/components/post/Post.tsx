@@ -16,9 +16,9 @@ export interface PostModal {
   description: string;
 }
 
-function Post({ img, title, subject, description }: PostModal) {
+function Post({ id, img, title, subject, description }: PostModal) {
   return (
-    <PostStyled>
+    <PostStyled>  
       <PostImg src={img}></PostImg>
       <PostContainer>
         <PostSubject>{subject}</PostSubject>

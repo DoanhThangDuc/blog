@@ -1,25 +1,37 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import GlobalStyle from "./shared/Global.styled";
-import Header from "./components/header/Header";
+import HomeContainer from "./containers/HomeContainer";
+import PostDetailsContainer from "./containers/PostDetailsContainer";
 import LifeStyleContainer from "./containers/LifeStyleContainer";
-import Music from "./pages/Music";
-import Photodiary from "./pages/Photodiary";
-import Travel from "./pages/Travel";
-import Footer from "./components/footer/Footer";
+import MusicContainer from "./containers/MusicContainer";
+import TravelContainer from "./containers/TravelContainer";
+import PhotodiaryContainer from "./containers/PhotodiaryContainer";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <GlobalStyle />
-      <Header />
-      <Routes>
-        <Route path="/" element={<LifeStyleContainer />} />
-        <Route path="/music" element={<Music />} />
-        <Route path="/photodiary" element={<Photodiary />} />
-        <Route path="/travel" element={<Travel />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+      <Switch>
+        <Route path="/" exact>
+          <HomeContainer />
+        </Route>
+        <Route path="/posts/:id">
+          <PostDetailsContainer />
+        </Route>
+        <Route path="/lifestyle">
+          <LifeStyleContainer />
+        </Route>
+        <Route path="/music">
+          <MusicContainer />
+        </Route>
+        <Route path="/photodiary">
+          <PhotodiaryContainer />
+        </Route>
+        <Route path="/travel">
+          <TravelContainer />
+        </Route>
+      </Switch>
+    </>
   );
 }
 

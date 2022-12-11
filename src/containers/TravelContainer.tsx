@@ -5,8 +5,8 @@ import { selectPostsBySubject } from "../selector";
 import { RootState } from "../store";
 import { mapStateToProps } from "./PostDetailsContainer";
 
-function LifeStyleContainer({ state }: { state: RootState }) {
-  return <Home posts={selectPostsBySubject(state, "LIFESTYLE")} />;
+function TravelContainer({ state }: { state: RootState }) {
+  return <Home posts={selectPostsBySubject(state, "TRAVEL")} />;
 }
 
-export default connect(mapStateToProps)(LifeStyleContainer);
+export default connect(mapStateToProps)(TravelContainer);
