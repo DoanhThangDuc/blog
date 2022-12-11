@@ -24,14 +24,14 @@ function PostDetailsContainer({
 }: {
   state: RootState;
   id: string;
-  suggestedPosts: PostModal[] | undefined;
+  suggestedPosts: PostModal[];
   postDetails: PostModal | undefined;
 }) {
   return (
     <PostDetails
-      suggestedPosts={selectSuggestPosts(state, id)}
+      suggestedPosts={suggestedPosts}
       id={id}
-      postDetails={selectCurrentPost(state, id)}
+      postDetails={postDetails}
     />
   );
 }
