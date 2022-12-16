@@ -1,4 +1,3 @@
-import React from "react";
 import { connect } from "react-redux";
 import Home from "../pages/Home/Home";
 import { selectPosts } from "../selector";

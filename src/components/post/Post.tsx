@@ -1,4 +1,5 @@
 import React from "react";
+import { PostModal } from "../../features/PostsSlice";
 import {
   PostContainer,
   PostContent,
@@ -8,23 +9,15 @@ import {
   PostStyled,
 } from "./Post.styled";
 
-export interface PostModal {
-  id: number;
-  img: string;
-  title: string;
-  subject: string;
-  description: string;
-}
-
-function Post({ id, img, title, subject, description }: PostModal) {
+function Post({ post }: { post: PostModal }) {
   return (
-    <PostStyled>  
-      <PostImg src={img}></PostImg>
+    <PostStyled>
+      <PostImg src={post.urlToImage} />
       <PostContainer>
-        <PostSubject>{subject}</PostSubject>
-        <PostTitle>{title}</PostTitle>
+        <PostSubject>{post.source.name}</PostSubject>
+        <PostTitle>{post.title}</PostTitle>
         <PostContent>
-          <p>{description}</p>
+          <p>{post.description}</p>
         </PostContent>
       </PostContainer>
     </PostStyled>
