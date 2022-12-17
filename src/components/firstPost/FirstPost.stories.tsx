@@ -11,7 +11,7 @@ const Template: Story<PostModal> = (args) => <FirstPost {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  urlToImage: "/images/firstPost.png",
+  imageUrl: "/images/firstPost.png",
   source: { id: "", name: "PHOTODIARY" },
   title: "The perfect weekend getaway",
   description:
@@ -20,7 +20,7 @@ Default.args = {
 
 export const WithoutImage = Template.bind({});
 WithoutImage.args = {
-  urlToImage: "",
+  imageUrl: "",
   source: { id: "", name: "PHOTODIARY" },
   title: "The perfect weekend getaway",
   description:
@@ -29,7 +29,7 @@ WithoutImage.args = {
 
 export const LongTitle = Template.bind({});
 LongTitle.args = {
-  urlToImage: "/images/firstPost.png",
+  imageUrl: "/images/firstPost.png",
   source: { id: "", name: "PHOTODIARY" },
   title:
     "This is a long title This is a long This is a long title This is a lon This is a long title This is a lon This is a long title This is a lon title This is a long title This is a long title",
@@ -39,7 +39,7 @@ LongTitle.args = {
 
 export const ShortTitle = Template.bind({});
 ShortTitle.args = {
-  urlToImage: "/images/firstPost.png",
+  imageUrl: "/images/firstPost.png",
   source: { id: "", name: "PHOTODIARY" },
   title: "Short Title",
   description:
@@ -48,7 +48,7 @@ ShortTitle.args = {
 
 export const EmptyDescription = Template.bind({});
 EmptyDescription.args = {
-  urlToImage: "/images/firstPost.png",
+  imageUrl: "/images/firstPost.png",
   source: { id: "", name: "PHOTODIARY" },
   title: "Title",
   description: "",

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
+import { renameKey } from "../selector";
 
 // const posts = [
 //   {
@@ -65,20 +66,19 @@ export interface PostModal {
   title: string;
   description: string;
   url: string;
-  urlToImage: string;
+  imageUrl: string;
   publishedAt: string;
   content: string;
 }
 
 const POST_URL =
-  "https://newsapi.org/v2/everything?q=tesla&from=2022-11-15&sortBy=publishedAt&apiKey=5090c0e658b24579afe2aa8fd9c17222";
+  "https://newsapi.org/v2/everything?q=tesla&from=2022-11-17&sortBy=publishedAt&apiKey=5090c0e658b24579afe2aa8fd9c17222";
 
 export const postsSlice = createSlice({
   name: "posts",
   initialState: { status: "idle", posts: [] } as PostSliceProps,
   reducers: {
     populatePosts: (state, action) => {
-      console.log(action.payload);
       return { ...state, posts: [...action.payload] };
     },
   },
@@ -96,13 +96,16 @@ export const postsSlice = createSlice({
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   try {
     const result = await axios.get(POST_URL);
-    return result.data.articles;
+    const posts = result.data.articles.map((article: PostModal) =>
+      renameKey(article, "urlToImage", "imageUrl")
+    );
+    return posts;
   } catch (error) {
     console.error(error);
   }
 });
 
-// Use promise solution to fetch Posts, 
+// Use promise solution to fetch Posts,
 // in the case of using it, pls comment the fetchPosts and extraReducers above
 
 // export const fetchPosts = () => {

@@ -15,7 +15,7 @@ function FirstPost(post: PostModal) {
   return (
     <FirstPostStyled>
       <FirstPostImg>
-        <Img src={post.urlToImage} alt="post-image" />
+        <Img src={post.imageUrl} alt="post-image" />
       </FirstPostImg>
       <FirstPostContent>
         <Subject>{post.source.name}</Subject>

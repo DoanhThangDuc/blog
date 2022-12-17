@@ -12,7 +12,7 @@ const Template: Story<PostModal & { openDetails: (id: number) => void }> = (
 
 export const Default = Template.bind({});
 Default.args = {
-  urlToImage: "/images/postimg.png",
+  imageUrl: "/images/postimg.png",
   source: { id: "", name: "PHOTODIARY" },
   title: "The perfect weekend getaway",
   description:
@@ -21,7 +21,7 @@ Default.args = {
 
 export const WithoutImage = Template.bind({});
 WithoutImage.args = {
-  urlToImage: "",
+  imageUrl: "",
   source: { id: "", name: "PHOTODIARY" },
   title: "The perfect weekend getaway",
   description:
@@ -30,7 +30,7 @@ WithoutImage.args = {
 
 export const LongTitle = Template.bind({});
 LongTitle.args = {
-  urlToImage: "/images/postimg.png",
+  imageUrl: "/images/postimg.png",
   source: { id: "", name: "PHOTODIARY" },
 
   title:
@@ -41,7 +41,7 @@ LongTitle.args = {
 
 export const ShortTitle = Template.bind({});
 ShortTitle.args = {
-  urlToImage: "/images/postimg.png",
+  imageUrl: "/images/postimg.png",
   source: { id: "", name: "PHOTODIARY" },
 
   title: "Short Title",
@@ -51,7 +51,7 @@ ShortTitle.args = {
 
 export const EmptyDescription = Template.bind({});
 EmptyDescription.args = {
-  urlToImage: "/images/postimg.png",
+  imageUrl: "/images/postimg.png",
   source: { id: "", name: "PHOTODIARY" },
   title: "Title",
   description: "",
