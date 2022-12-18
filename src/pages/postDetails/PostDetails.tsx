@@ -15,7 +15,7 @@ import {
 import Comment from "../../components/comment/Comment";
 import Header from "../../components/header/Header";
 import { PostModal } from "../../features/PostsSlice";
-import { findPostId } from "../../selector";
+import { parsePostIdFromUrl } from "../../helpers/parsePostIdFromUrl";
 
 function PostDetails({
   suggestedPosts,
@@ -29,12 +29,11 @@ function PostDetails({
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
-  console.log(postDetails)
   return (
     <>
       <Header />
       <PostDetailStyled>
-      {!postDetails && <h2>URL not match</h2>}
+      {!postDetails && <h2>404 not found</h2>}
         <Container>
           <ImgContainer>
             <Img src={postDetails?.imageUrl} alt="post-image" />
@@ -89,7 +88,7 @@ function PostDetails({
               {suggestedPosts.map((post) => {
                 return (
                   <Link
-                    to={`/posts/${findPostId(post.url)}`}
+                    to={`/posts/${parsePostIdFromUrl(post.url)}`}
                     key={post.url}
                   >
                     <RefPost >

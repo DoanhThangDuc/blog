@@ -1,7 +1,4 @@
-import {
-  createAsyncThunk,
-  createSlice,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { renameKey } from "../selector";
 
@@ -75,8 +72,8 @@ export interface PostModal {
 }
 
 const POST_URL =
-"https://newsapi.org/v2/everything?q=tesla&from=2022-11-18&sortBy=publishedAt&apiKey=5090c0e658b24579afe2aa8fd9c17222"
-  // "https://newsapi.org/v2/everything?q=tesla&from=2022-11-17&sortBy=publishedAt&apiKey=5090c0e658b24579afe2aa8fd9c17222";
+  "https://newsapi.org/v2/everything?q=tesla&from=2022-11-18&sortBy=publishedAt&apiKey=1b4b963ff661428ebe4b361015bd015c";
+  // "https://newsapi.org/v2/everything?q=tesla&from=2022-11-18&sortBy=publishedAt&apiKey=5090c0e658b24579afe2aa8fd9c17222";
 
 export const postsSlice = createSlice({
   name: "posts",

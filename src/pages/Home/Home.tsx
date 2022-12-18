@@ -5,20 +5,21 @@ import { HomeStyled, PostContainer, Status, TopBtn } from "./Home.styled";
 import Header from "../../components/header/Header";
 import { PostModal } from "../../features/PostsSlice";
 import Loading from "../Loading";
-import { findPostId } from "../../selector";
 import ErrorPage from "../ErrorPage";
+import { parsePostIdFromUrl } from "../../helpers/parsePostIdFromUrl";
 
 function Home({ posts, status }: { posts: PostModal[]; status?: string }) {
-  const [scrollTop, setScrollTop] = useState<boolean>(false);
+  const [shouldTopBtnVisible, setShouldTopBtnVisible] =
+    useState<boolean>(false);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
       const scrolled = document.documentElement.scrollTop;
       if (scrolled > 1000) {
-        setScrollTop(true);
+        setShouldTopBtnVisible(true);
         return;
       }
-      setScrollTop(false);
+      setShouldTopBtnVisible(false);
     });
   });
 
@@ -38,12 +39,12 @@ function Home({ posts, status }: { posts: PostModal[]; status?: string }) {
         </Status>
         <PostContainer>
           {posts.map((post) => (
-            <Link to={`/posts/${findPostId(post.url)}`} key={post.url}>
+            <Link to={`/posts/${parsePostIdFromUrl(post.url)}`} key={post.url}>
               <Post post={post} />
             </Link>
           ))}
         </PostContainer>
-        {scrollTop && <TopBtn size={40} onClick={scrollToTop} />}
+        {shouldTopBtnVisible && <TopBtn size={40} onClick={scrollToTop} />}
       </HomeStyled>
     </>
   );

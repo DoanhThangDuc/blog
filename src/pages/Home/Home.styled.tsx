@@ -12,6 +12,7 @@ export const Status = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  top: -20px;
 `;
 export const PostContainer = styled.div`
   display: inline-flex;
