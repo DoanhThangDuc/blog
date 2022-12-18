@@ -5,6 +5,14 @@ export const HomeStyled = styled.div`
   display: flex;
   justify-content: center;
 `;
+export const Status = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const PostContainer = styled.div`
   display: inline-flex;
   width: calc(100vw - 18.8rem);

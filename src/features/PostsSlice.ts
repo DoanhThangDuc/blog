@@ -1,7 +1,6 @@
 import {
   createAsyncThunk,
   createSlice,
-  isRejectedWithValue,
 } from "@reduxjs/toolkit";
 import axios from "axios";
 import { renameKey } from "../selector";
