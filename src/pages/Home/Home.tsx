@@ -6,6 +6,7 @@ import Header from "../../components/header/Header";
 import { PostModal } from "../../features/PostsSlice";
 import Loading from "../Loading";
 import { findPostId } from "../../selector";
+import ErrorPage from "../ErrorPage";
 
 function Home({ posts, status }: { posts: PostModal[]; status?: string }) {
   const [scrollTop, setScrollTop] = useState<boolean>(false);
@@ -32,6 +33,7 @@ function Home({ posts, status }: { posts: PostModal[]; status?: string }) {
       <Header />
       <HomeStyled>
         {status === "pending" && <Loading />}
+        {status !== ("pending" || "idle") && <ErrorPage message={status}/> }
         <PostContainer>
           {posts.map((post) => (
             <Link to={`/posts/${findPostId(post.url)}`} key={post.url}>

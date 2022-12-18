@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  isRejectedWithValue,
+} from "@reduxjs/toolkit";
 import axios from "axios";
 import { renameKey } from "../selector";
 
@@ -72,7 +76,8 @@ export interface PostModal {
 }
 
 const POST_URL =
-  "https://newsapi.org/v2/everything?q=tesla&from=2022-11-17&sortBy=publishedAt&apiKey=5090c0e658b24579afe2aa8fd9c17222";
+"https://newsapi.org/v2/everything?q=tesla&from=2022-11-18&sortBy=publishedAt&apiKey=5090c0e658b24579afe2aa8fd9c17222"
+  // "https://newsapi.org/v2/everything?q=tesla&from=2022-11-17&sortBy=publishedAt&apiKey=5090c0e658b24579afe2aa8fd9c17222";
 
 export const postsSlice = createSlice({
   name: "posts",
@@ -89,21 +94,28 @@ export const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state: PostSliceProps, action) => {
         return { ...state, status: "idle", posts: [...action.payload] };
+      })
+      .addCase(fetchPosts.rejected, (state: PostSliceProps, action: any) => {
+        const message = action.payload.message;
+        return { ...state, status: message, posts: [] };
       });
   },
 });
 
-export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  try {
-    const result = await axios.get(POST_URL);
-    const posts = result.data.articles.map((article: PostModal) =>
-      renameKey(article, "urlToImage", "imageUrl")
-    );
-    return posts;
-  } catch (error) {
-    console.error(error);
+export const fetchPosts = createAsyncThunk(
+  "posts/fetchPosts",
+  async (arg, thunkAPI) => {
+    try {
+      const result = await axios.get(POST_URL);
+      const posts = result.data.articles.map((article: PostModal) =>
+        renameKey(article, "urlToImage", "imageUrl")
+      );
+      return posts;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
-});
+);
 
 // Use promise solution to fetch Posts,
 // in the case of using it, pls comment the fetchPosts and extraReducers above
