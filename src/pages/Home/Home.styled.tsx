@@ -4,6 +4,7 @@ import { FaArrowCircleUp } from "react-icons/fa";
 export const HomeStyled = styled.div`
   display: flex;
   justify-content: center;
+  cursor: pointer;
 `;
 export const Status = styled.div`
   position: absolute;

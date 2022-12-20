@@ -4,6 +4,7 @@ import { PostModal } from "../features/PostsSlice";
 import PostDetails from "../pages/postDetails/PostDetails";
 import {
   selectCurrentPost,
+  selectFetchErrorMessage,
   selectFetchStatus,
   selectSuggestPosts,
 } from "../selector";
@@ -13,6 +14,7 @@ export const mapStateToProps = (state: RootState) => {
   const id = state.router.location.pathname.replace("/posts/", "").trim();
   return {
     id: id,
+    errorMessage: selectFetchErrorMessage(state),
     status: selectFetchStatus(state),
     state: state,
     suggestedPosts: selectSuggestPosts(state, id),

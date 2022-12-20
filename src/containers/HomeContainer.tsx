@@ -7,11 +7,19 @@ import { mapStateToProps } from "./PostDetailsContainer";
 function HomeContainer({
   state,
   status,
+  errorMessage,
 }: {
   state: RootState;
   status: string;
+  errorMessage: string | null;
 }) {
-  return <Home posts={selectPosts(state)} status={status} />;
+  return (
+    <Home
+      posts={selectPosts(state)}
+      status={status}
+      errorMessage={errorMessage}
+    />
+  );
 }
 
 export default connect(mapStateToProps)(HomeContainer);

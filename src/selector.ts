@@ -3,17 +3,12 @@ import { PostModal } from "./features/PostsSlice";
 import { parsePostIdFromUrl } from "./helpers/parsePostIdFromUrl";
 import { RootState } from "./store";
 
-export const renameKey = (object: any, oldKey: string, newKey: string) => {
-  object[newKey] = JSON.parse(JSON.stringify(object[oldKey]));
-  delete object[oldKey];
-  return object;
-};
-
 const selectAllPosts = (state: RootState) => state.posts.posts;
 const selectPostById = (state: RootState, id: string | number | undefined) =>
   id;
 
 export const selectFetchStatus = (state: RootState) => state.posts.status;
+export const selectFetchErrorMessage = (state: RootState) => state.posts.error;
 
 export const selectPosts = createSelector([selectAllPosts], (posts) =>
   posts.slice(0, 20)

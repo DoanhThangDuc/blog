@@ -8,7 +8,15 @@ import Loading from "../Loading";
 import ErrorPage from "../ErrorPage";
 import { parsePostIdFromUrl } from "../../helpers/parsePostIdFromUrl";
 
-function Home({ posts, status }: { posts: PostModal[]; status?: string }) {
+function Home({
+  posts,
+  status,
+  errorMessage,
+}: {
+  posts: PostModal[];
+  status?: string;
+  errorMessage?: string | null;
+}) {
   const [shouldTopBtnVisible, setShouldTopBtnVisible] =
     useState<boolean>(false);
 
@@ -29,12 +37,15 @@ function Home({ posts, status }: { posts: PostModal[]; status?: string }) {
       behavior: "smooth",
     });
   };
+
   return (
     <>
       <Header />
       <HomeStyled>
         <Status>
-          {status !== ("pending" || "idle") && <ErrorPage message={status} />}
+          {status !== ("pending" || "idle") && (
+            <ErrorPage message={errorMessage} />
+          )}
           {status === "pending" && <Loading />}
         </Status>
         <PostContainer>
