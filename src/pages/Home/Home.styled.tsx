@@ -4,10 +4,10 @@ import { FaArrowCircleUp } from "react-icons/fa";
 export const HomeStyled = styled.div`
   display: flex;
   justify-content: center;
-  cursor: pointer;
 `;
 export const Status = styled.div`
   position: absolute;
+  z-index: -1;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -20,6 +20,7 @@ export const PostContainer = styled.div`
   width: calc(100vw - 18.8rem);
   justify-content: space-between;
   flex-wrap: wrap;
+  cursor: pointer;
   & div {
     margin-bottom: 10rem;
   }
