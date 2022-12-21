@@ -1,15 +1,21 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
+import { PostModal } from "../features/PostsSlice";
 import PostDetails from "../pages/postDetails/PostDetails";
-import { selectCurrentPost, selectSuggestPosts } from "../selector";
+import {
+  selectCurrentPost,
+  selectFetchErrorMessage,
+  selectFetchStatus,
+  selectSuggestPosts,
+} from "../selector";
 import { RootState } from "../store";
-import { PostModal } from "../components/post/Post";
 
 export const mapStateToProps = (state: RootState) => {
-  const id = state.router.location.pathname.slice(-1);
+  const id = state.router.location.pathname.replace("/posts/", "").trim();
   return {
     id: id,
+    errorMessage: selectFetchErrorMessage(state),
+    status: selectFetchStatus(state),
     state: state,
     suggestedPosts: selectSuggestPosts(state, id),
     postDetails: selectCurrentPost(state, id),
@@ -17,7 +23,6 @@ export const mapStateToProps = (state: RootState) => {
 };
 
 function PostDetailsContainer({
-  state,
   id,
   suggestedPosts,
   postDetails,

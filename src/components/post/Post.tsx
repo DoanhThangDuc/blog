@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { PostModal } from "../../features/PostsSlice";
+import { limitParagraph } from "../../helpers/limitParagraph";
 import {
   PostContainer,
   PostContent,
@@ -8,23 +10,26 @@ import {
   PostStyled,
 } from "./Post.styled";
 
-export interface PostModal {
-  id: number;
-  img: string;
-  title: string;
-  subject: string;
-  description: string;
-}
+function Post({ post }: { post: PostModal }) {
+  const [mouseOver, setMouseOver] = useState(false);
 
-function Post({ id, img, title, subject, description }: PostModal) {
+  const handleMouseOver = () => {
+    setMouseOver(true);
+  };
+  const handleMouseOut = () => {
+    setMouseOver(false);
+  };
+
   return (
-    <PostStyled>  
-      <PostImg src={img}></PostImg>
+    <PostStyled onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+      <PostImg src={post.imageUrl} />
       <PostContainer>
-        <PostSubject>{subject}</PostSubject>
-        <PostTitle>{title}</PostTitle>
+        <PostSubject>{post.source.name}</PostSubject>
+        <PostTitle>
+          {!mouseOver ? limitParagraph(post.title, 45) : post.title}
+        </PostTitle>
         <PostContent>
-          <p>{description}</p>
+          <p>{limitParagraph(post.content, 120)}</p>
         </PostContent>
       </PostContainer>
     </PostStyled>

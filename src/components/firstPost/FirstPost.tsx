@@ -1,4 +1,5 @@
 import React from "react";
+import { PostModal } from "../../features/PostsSlice";
 import {
   FirstPostContent,
   FirstPostImg,
@@ -9,18 +10,17 @@ import {
   FirstPostStyled,
   Img,
 } from "./FirstPost.styled";
-import { PostModal } from "../post/Post";
 
-function FirstPost({ img, title, subject, description }: PostModal) {
+function FirstPost(post: PostModal) {
   return (
     <FirstPostStyled>
       <FirstPostImg>
-        <Img src={img} alt="post-image" />
+        <Img src={post.imageUrl} alt="post-image" />
       </FirstPostImg>
       <FirstPostContent>
-        <Subject>{subject}</Subject>
-        <Title>{title}</Title>
-        <Content>{description}</Content>
+        <Subject>{post.source.name}</Subject>
+        <Title>{post.title}</Title>
+        <Content>{post.description}</Content>
         <Comment>LEAVE A COMMENT</Comment>
       </FirstPostContent>
     </FirstPostStyled>

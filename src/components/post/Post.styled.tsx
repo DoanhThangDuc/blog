@@ -14,6 +14,7 @@ export const PostContainer = styled.div`
 export const PostImg = styled.img<{ src: string }>`
   display: ${(props) => (props.src ? "block" : "none")};
   width: 100%;
+  height:50%
 `;
 export const PostSubject = styled.p`
   color: #b8b2a4;
@@ -23,7 +24,7 @@ export const PostTitle = styled.h2`
   color: #626262;
   font-weight: 300;
   font-size: 1.875em;
-  padding: 0.7rem 0 2rem 0;
+  padding: 0.7rem 0 1.7rem 0;
 `;
 export const PostContent = styled.div`
   font-weight: 500;
