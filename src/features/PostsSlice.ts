@@ -1,58 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { renameKey } from "../helpers/renameKey";
-import store from "../store";
 
-// const posts = [
-//   {
-//     id: 2,
-//     img: "/images/postimg.png",
-//     subject: "LIFESTYLE",
-//     title: "More than just a music festival",
-//     description:
-//       "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-//   },
-//   {
-//     id: 3,
-//     img: "/images/coffee.png",
-//     subject: "LIFESTYLE",
-//     title: "Life tastes better with coffee",
-//     description:
-//       "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-//   },
-//   {
-//     id: 4,
-//     img: "/images/bridge.png",
-//     subject: "PHOTODIARY",
-//     title: "American dream",
-//     description:
-//       "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-//   },
-//   {
-//     id: 5,
-//     img: "/images/Alps.png",
-//     subject: "LIFESTYLE",
-//     title: "A day exploring the Alps",
-//     description:
-//       "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-//   },
-//   {
-//     id: 6,
-//     img: "/images/top10song.png",
-//     subject: "LIFESTYLE",
-//     title: "Top 10 songs for running",
-//     description:
-//       "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-//   },
-//   {
-//     id: 7,
-//     img: "/images/coldroad.png",
-//     subject: "LIFESTYLE",
-//     title: "Cold winter days",
-//     description:
-//       "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
-//   },
-// ];
 interface PostSliceProps {
   status: "idle" | "pending" | "rejected";
   posts: PostModal[];
@@ -74,15 +23,14 @@ export interface PostModal {
 }
 
 const POST_URL =
-  "https://newsapi.org/v2/everything?q=tesla&from=2022-11-20&sortBy=publishedAt&apiKey=1b4b963ff661428ebe4b361015bd015c";
-// "https://newsapi.org/v2/everything?q=tesla&from=2022-11-18&sortBy=publishedAt&apiKey=5090c0e658b24579afe2aa8fd9c17222";
+  "https://newsapi.org/v2/everything?q=tesla&from=2022-11-24&sortBy=publishedAt&apiKey=1b4b963ff661428ebe4b361015bd015c";
 
 export const postsSlice = createSlice({
   name: "posts",
-  initialState: { status: "idle", posts: [], error: null } as PostSliceProps,
+  initialState: { status: "pending", posts: [], error: null } as PostSliceProps,
   reducers: {
     populatePosts: (state, action) => {
-      return { ...state, posts: [...action.payload] };
+      return { ...state, posts: [...action.payload], status: "idle" };
     },
     handleFetchError: (state, action) => {
       const message = action.payload.message;

@@ -14,7 +14,7 @@ export const PostContainer = styled.div`
 export const PostImg = styled.img<{ src: string }>`
   display: ${(props) => (props.src ? "block" : "none")};
   width: 100%;
-  height:50%
+  height: 50%;
 `;
 export const PostSubject = styled.p`
   color: #b8b2a4;

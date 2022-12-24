@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FaArrowCircleUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export const HomeStyled = styled.div`
   display: flex;
@@ -35,4 +36,7 @@ export const TopBtn = styled(FaArrowCircleUp)`
   & :hover {
     opacity: 0.7;
   }
+`;
+export const StyledLink = styled(Link)`
+  text-decoration: none;
 `;
