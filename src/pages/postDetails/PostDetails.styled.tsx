@@ -13,9 +13,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const ImgContainer = styled.div``;
+export const ImgContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 export const Img = styled.img`
-  width: 100%;
+  width: 80%;
   display: ${(props) => (props.src ? "block" : "none")};
 `;
 export const BodyContainer = styled.div`

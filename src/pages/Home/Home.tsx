@@ -1,7 +1,12 @@
 import { memo, useEffect, useState } from "react";
 import Post from "../../components/post/Post";
-import { Link } from "react-router-dom";
-import { HomeStyled, PostContainer, Status, TopBtn } from "./Home.styled";
+import {
+  HomeStyled,
+  PostContainer,
+  Status,
+  StyledLink,
+  TopBtn,
+} from "./Home.styled";
 import Header from "../../components/header/Header";
 import { PostModal } from "../../features/PostsSlice";
 import Loading from "../Loading";
@@ -37,7 +42,6 @@ function Home({
       behavior: "smooth",
     });
   };
-
   return (
     <>
       <Header />
@@ -49,11 +53,16 @@ function Home({
           {status === "pending" && <Loading />}
         </Status>
         <PostContainer>
-          {posts.map((post) => (
-            <Link to={`/posts/${parsePostIdFromUrl(post.url)}`} key={post.url}>
-              <Post post={post} />
-            </Link>
-          ))}
+          {posts.map((post) => {
+            return (
+              <StyledLink
+                to={`/posts/${parsePostIdFromUrl(post.url).toString()}`}
+                key={post.url}
+              >
+                <Post post={post} />
+              </StyledLink>
+            );
+          })}
         </PostContainer>
         {shouldTopBtnVisible && <TopBtn size={40} onClick={scrollToTop} />}
       </HomeStyled>

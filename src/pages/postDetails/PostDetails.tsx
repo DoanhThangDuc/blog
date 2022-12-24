@@ -16,6 +16,7 @@ import Comment from "../../components/comment/Comment";
 import Header from "../../components/header/Header";
 import { PostModal } from "../../features/PostsSlice";
 import { parsePostIdFromUrl } from "../../helpers/parsePostIdFromUrl";
+import { StyledLink } from "../Home/Home.styled";
 
 function PostDetails({
   suggestedPosts,
@@ -87,14 +88,14 @@ function PostDetails({
             <RefPosts>
               {suggestedPosts.map((post) => {
                 return (
-                  <Link
+                  <StyledLink
                     to={`/posts/${parsePostIdFromUrl(post.url)}`}
                     key={post.url}
                   >
                     <RefPost >
                       <Post post={post} />
                     </RefPost>
-                  </Link>
+                  </StyledLink>
                 );
               })}
             </RefPosts>
