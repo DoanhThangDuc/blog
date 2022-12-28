@@ -11,7 +11,6 @@ import Header from "../../components/header/Header";
 import { PostModal } from "../../features/PostsSlice";
 import Loading from "../Loading";
 import ErrorPage from "../ErrorPage";
-import { parsePostIdFromUrl } from "../../helpers/parsePostIdFromUrl";
 
 function Home({
   posts,
@@ -55,10 +54,7 @@ function Home({
         <PostContainer>
           {posts.map((post) => {
             return (
-              <StyledLink
-                to={`/posts/${parsePostIdFromUrl(post.url).toString()}`}
-                key={post.url}
-              >
+              <StyledLink to={`/posts/${post.source.id}`} key={post.url}>
                 <Post post={post} />
               </StyledLink>
             );

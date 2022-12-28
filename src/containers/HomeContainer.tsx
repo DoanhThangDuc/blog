@@ -1,25 +1,18 @@
 import { connect } from "react-redux";
+import { PostModal } from "../features/PostsSlice";
 import Home from "../pages/Home/Home";
-import { selectPosts } from "../selector";
-import { RootState } from "../store";
 import { mapStateToProps } from "./PostDetailsContainer";
 
 function HomeContainer({
-  state,
+  posts,
   status,
   errorMessage,
 }: {
-  state: RootState;
+  posts: PostModal[];
   status: string;
   errorMessage: string | null;
 }) {
-  return (
-    <Home
-      posts={selectPosts(state)}
-      status={status}
-      errorMessage={errorMessage}
-    />
-  );
+  return <Home posts={posts} status={status} errorMessage={errorMessage} />;
 }
 
 export default connect(mapStateToProps)(HomeContainer);

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
+import { parsePostIdFromUrl } from "../helpers/parsePostIdFromUrl";
 import { renameKey } from "../helpers/renameKey";
 
 interface PostSliceProps {
@@ -23,8 +24,8 @@ export interface PostModal {
 }
 
 const POST_URL =
-  "https://newsapi.org/v2/everything?q=tesla&from=2022-11-24&sortBy=publishedAt&apiKey=1b4b963ff661428ebe4b361015bd015c";
-
+  "https://newsapi.org/v2/everything?q=tesla&from=2022-11-28&sortBy=publishedAt&apiKey=1b4b963ff661428ebe4b361015bd015c";
+  
 export const postsSlice = createSlice({
   name: "posts",
   initialState: { status: "pending", posts: [], error: null } as PostSliceProps,
@@ -75,9 +76,15 @@ export const fetchPosts = () => {
     const response = axios
       .get(POST_URL)
       .then((response) => {
-        const posts = response.data.articles.map((article: PostModal) =>
+        const result = response.data.articles.map((article: PostModal) =>
           renameKey(article, "urlToImage", "imageUrl")
         );
+        const posts = result.map((post: PostModal) => {
+          return {
+            ...post,
+            source: { ...post.source, id: parsePostIdFromUrl(post.url) },
+          };
+        });
         dispatch(postsSlice.actions.populatePosts(posts));
       })
       .catch((error) => dispatch(postsSlice.actions.handleFetchError(error)));

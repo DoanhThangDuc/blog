@@ -1,5 +1,4 @@
 import { memo, useEffect } from "react";
-import { Link } from "react-router-dom";
 import {
   PostDetailStyled, Container, BodyContainer, PostBody, PersionalDetails,
   References, ImgContainer, Img, Details, Subject, Title, Content, ImgDetails,
@@ -15,17 +14,19 @@ import {
 import Comment from "../../components/comment/Comment";
 import Header from "../../components/header/Header";
 import { PostModal } from "../../features/PostsSlice";
-import { parsePostIdFromUrl } from "../../helpers/parsePostIdFromUrl";
 import { StyledLink } from "../Home/Home.styled";
+import Loading from "../Loading";
 
 function PostDetails({
   suggestedPosts,
   id,
   postDetails,
+  status,
 }: {
   suggestedPosts: PostModal[];
   id: string | number | undefined;
   postDetails: PostModal | undefined;
+  status: string;
 }) {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -34,7 +35,8 @@ function PostDetails({
     <>
       <Header />
       <PostDetailStyled>
-      {!postDetails && <h2>404 not found</h2>}
+        {status !== "pending" && !postDetails && <h2>404 not found</h2>}
+        {status === "pending" && <Loading />}
         <Container>
           <ImgContainer>
             <Img src={postDetails?.imageUrl} alt="post-image" />
@@ -88,11 +90,8 @@ function PostDetails({
             <RefPosts>
               {suggestedPosts.map((post) => {
                 return (
-                  <StyledLink
-                    to={`/posts/${parsePostIdFromUrl(post.url)}`}
-                    key={post.url}
-                  >
-                    <RefPost >
+                  <StyledLink to={`/posts/${post.source.id}`} key={post.url}>
+                    <RefPost>
                       <Post post={post} />
                     </RefPost>
                   </StyledLink>
