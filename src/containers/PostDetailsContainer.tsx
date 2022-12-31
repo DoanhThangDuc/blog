@@ -5,19 +5,23 @@ import {
   selectCurrentPost,
   selectFetchErrorMessage,
   selectFetchStatus,
-  selectPosts,
+  selectPostsLimited,
+  selectPostsBySubject,
   selectSuggestPosts,
+  selectNewestPosts,
 } from "../selector";
 import { RootState } from "../store";
 
 export const mapStateToProps = (state: RootState) => {
   return {
     state: state,
-    posts: selectPosts(state),
+    cnbcPosts: selectPostsBySubject(state),
+    posts: selectPostsLimited(state),
     errorMessage: selectFetchErrorMessage(state),
     status: selectFetchStatus(state),
     suggestedPosts: selectSuggestPosts(state),
     postDetails: selectCurrentPost(state),
+    postsChart: selectNewestPosts(state),
   };
 };
 
@@ -25,17 +29,20 @@ function PostDetailsContainer({
   suggestedPosts,
   postDetails,
   status,
+  postsChart,
 }: {
   suggestedPosts: PostModal[];
   postDetails: PostModal | undefined;
-  status: string;
+  status: "idle" | "pending" | "rejected";
+  postsChart: PostModal[] | undefined;
 }) {
   return (
     <PostDetails
       suggestedPosts={suggestedPosts}
-      id={postDetails?.source.id}
+      id={postDetails?.id}
       postDetails={postDetails}
       status={status}
+      postsChart={postsChart}
     />
   );
 }

@@ -17,7 +17,7 @@ function Home({
   status,
   errorMessage,
 }: {
-  posts: PostModal[];
+  posts: PostModal[] | undefined;
   status?: string;
   errorMessage?: string | null;
 }) {
@@ -52,9 +52,9 @@ function Home({
           {status === "pending" && <Loading />}
         </Status>
         <PostContainer>
-          {posts.map((post) => {
+          {posts?.map((post) => {
             return (
-              <StyledLink to={`/posts/${post.source.id}`} key={post.url}>
+              <StyledLink to={`/posts/${post.id}`} key={post.id}>
                 <Post post={post} />
               </StyledLink>
             );

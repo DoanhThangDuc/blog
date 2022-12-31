@@ -14,6 +14,7 @@ export interface PostModal {
     id: string;
     name: string;
   };
+  id: string;
   author: string;
   title: string;
   description: string;
@@ -24,8 +25,8 @@ export interface PostModal {
 }
 
 const POST_URL =
-  "https://newsapi.org/v2/everything?q=tesla&from=2022-11-28&sortBy=publishedAt&apiKey=1b4b963ff661428ebe4b361015bd015c";
-  
+  "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=1b4b963ff661428ebe4b361015bd015c";
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState: { status: "pending", posts: [], error: null } as PostSliceProps,
@@ -76,16 +77,13 @@ export const fetchPosts = () => {
     const response = axios
       .get(POST_URL)
       .then((response) => {
-        const result = response.data.articles.map((article: PostModal) =>
-          renameKey(article, "urlToImage", "imageUrl")
-        );
-        const posts = result.map((post: PostModal) => {
+        const result = response.data.articles.map((article: PostModal) => {
           return {
-            ...post,
-            source: { ...post.source, id: parsePostIdFromUrl(post.url) },
+            ...renameKey(article, "urlToImage", "imageUrl"),
+            id: parsePostIdFromUrl(article.url),
           };
         });
-        dispatch(postsSlice.actions.populatePosts(posts));
+        dispatch(postsSlice.actions.populatePosts(result));
       })
       .catch((error) => dispatch(postsSlice.actions.handleFetchError(error)));
     return response;

@@ -10,25 +10,85 @@ const Template: Story<PostsChartProps> = (args) => <PostsChart {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  title: "A day exploring the Apls",
+  postsChart: [
+    {
+      source: {
+        id: "",
+        name: "",
+      },
+      id: "",
+      author: "",
+      title: "A day exploring the Apls",
+      description: "",
+      url: "",
+      imageUrl: "",
+      publishedAt: "",
+      content: "",
+    },
+  ],
   commentNumber: 24,
   src: "/images/banner.png",
 };
 export const LongTitle = Template.bind({});
 LongTitle.args = {
   ...Default.args,
-  title:
-    "A day exploring the Apls A day exploring the Apls A day exploring the Apls A day exploring the Apls A day exploring the Apls ",
+  postsChart: [
+    {
+      source: {
+        id: "",
+        name: "",
+      },
+      id: "",
+      author: "",
+      title:
+        "A day exploring the Apls A day exploring the Apls A day exploring the Apls A day exploring the Apls A day exploring the Apls ",
+      description: "",
+      url: "",
+      imageUrl: "",
+      publishedAt: "",
+      content: "",
+    },
+  ],
 };
 export const ShortTitle = Template.bind({});
 ShortTitle.args = {
   ...Default.args,
-  title: "Short Title",
+  postsChart: [
+    {
+      source: {
+        id: "",
+        name: "",
+      },
+      id: "",
+      author: "",
+      title: "Short Title",
+      description: "",
+      url: "",
+      imageUrl: "",
+      publishedAt: "",
+      content: "",
+    },
+  ],
 };
 export const NoTitle = Template.bind({});
 NoTitle.args = {
   ...Default.args,
-  title: "",
+  postsChart: [
+    {
+      source: {
+        id: "",
+        name: "",
+      },
+      id: "",
+      author: "",
+      title: "",
+      description: "",
+      url: "",
+      imageUrl: "",
+      publishedAt: "",
+      content: "",
+    },
+  ],
 };
 export const NoNumberOfComment = Template.bind({});
 NoNumberOfComment.args = {
