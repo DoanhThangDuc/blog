@@ -1,4 +1,5 @@
-import React from "react";
+import { PostModal } from "../../features/PostsSlice";
+import { StyledLink } from "../../pages/Home/Home.styled";
 import {
   PostSubject,
   PostsChartStyled,
@@ -11,33 +12,25 @@ import {
 } from "./PostsChart.styled";
 
 export interface PostsChartProps {
-  title: string;
   commentNumber: number;
   src: string;
+  postsChart: PostModal[] | undefined;
 }
-function PostsChart({ title, commentNumber, src }: PostsChartProps) {
+function PostsChart({ commentNumber, src, postsChart }: PostsChartProps) {
   return (
     <PostsChartStyled>
       <PostSubject>TOP POSTS</PostSubject>
       <ChartContent>
-        <ChartList>
-          <PostChart>
-            <Title>{title}</Title>
-            <CommentNumber>{commentNumber + " COMMENTS"}</CommentNumber>
-          </PostChart>
-        </ChartList>
-        <ChartList>
-          <PostChart>
-            <Title>{title}</Title>
-            <CommentNumber>{commentNumber + " COMMENTS"}</CommentNumber>
-          </PostChart>
-        </ChartList>
-        <ChartList>
-          <PostChart>
-            <Title>{title}</Title>
-            <CommentNumber>{commentNumber + " COMMENTS"}</CommentNumber>
-          </PostChart>
-        </ChartList>
+        {postsChart?.map((post) => (
+          <ChartList key={post.id}>
+            <PostChart>
+              <StyledLink to={`/posts/${post.id}`}>
+                <Title>{post.title}</Title>
+              </StyledLink>
+              <CommentNumber>{commentNumber + " COMMENTS"}</CommentNumber>
+            </PostChart>
+          </ChartList>
+        ))}
       </ChartContent>
 
       <Banner src={src} />

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Logo, Button, HeaderStyled } from "./Header.styled";
 
@@ -11,10 +10,10 @@ function Header() {
         </Logo>
       </Link>
       <Button>
-        <NavLink to="/lifestyle">LIFESTYLE</NavLink>
-        <NavLink to="/photodiary">PHOTODIARY</NavLink>
-        <NavLink to="/music">MUSIC</NavLink>
-        <NavLink to="/travel">TRAVEL</NavLink>
+        <NavLink to="/cnbc">CNBC</NavLink>
+        <NavLink to="/reuters">REUTERS</NavLink>
+        <NavLink to="/cnn">CNN</NavLink>
+        <NavLink to="/bloomberg">BLOOMBERG</NavLink>
       </Button>
     </HeaderStyled>
   );

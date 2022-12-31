@@ -1,24 +1,29 @@
 import { createSelector } from "reselect";
 import { PostModal } from "./features/PostsSlice";
-import { parsePostIdFromUrl } from "./helpers/parsePostIdFromUrl";
 import { RootState } from "./store";
 
 const selectAllPosts = (state: RootState) => state.posts.posts;
-const selectPostById = (state: RootState, id: string | number | undefined) =>
-  id;
+const selectPostDetailsId = (state: RootState) =>
+  state.router.location.pathname.replace("/posts/", "").trim();
 
 export const selectFetchStatus = (state: RootState) => state.posts.status;
 export const selectFetchErrorMessage = (state: RootState) => state.posts.error;
-
-export const selectPosts = createSelector([selectAllPosts], (posts) =>
-  posts.slice(0, 20)
-);
+export const selectUrlSubject = (state: RootState) => {
+  return state.router.location.pathname.replace("/", "").trim();
+};
+export const selectPostsLimited = createSelector([selectAllPosts], (posts) => {
+  const postsLimited = posts.slice(0, 20);
+  const postsSorted = postsLimited.sort((post1, post2) => {
+    return Date.parse(post1.publishedAt) - Date.parse(post2.publishedAt);
+  });
+  return postsSorted;
+});
 
 export const selectCurrentPost = createSelector(
-  [selectAllPosts, selectPostById],
+  [selectAllPosts, selectPostDetailsId],
   (posts, id) => {
     return posts.find((post: PostModal) => {
-      return parsePostIdFromUrl(post.url).toString() === id;
+      return post.id === id;
     });
   }
 );
@@ -26,14 +31,28 @@ export const selectCurrentPost = createSelector(
 export const selectSuggestPosts = createSelector(
   [selectAllPosts, selectCurrentPost],
   (posts, currentPost) => {
-    return posts
-      .filter((post: PostModal) => post.title === currentPost?.title)
+    const suggestedPosts = posts
+      .filter((post: PostModal) => {
+        if (post.id === currentPost?.id) return;
+        return (
+          post.source.name.toLocaleUpperCase() ===
+          currentPost?.source.name.toLocaleUpperCase()
+        );
+      })
       .slice(0, 3);
+    return suggestedPosts;
   }
 );
 export const selectPostsBySubject = createSelector(
-  [selectAllPosts, (state: RootState, subject: string) => subject],
+  [selectAllPosts, selectUrlSubject],
   (posts, subject) => {
-    return posts.filter((post) => post.title === subject);
+    return posts.filter((post) => {
+      return post.source.name
+        .toLocaleUpperCase()
+        .includes(subject.toLocaleUpperCase());
+    });
   }
+);
+export const selectNewestPosts = createSelector([selectPostsLimited], (posts) =>
+  posts.slice(0, 3)
 );

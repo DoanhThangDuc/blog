@@ -8,7 +8,7 @@ function LifeStyle({ posts }: { posts: PostModal[] }) {
     <LifeStylePage>
       <PostContainer>
         {posts.map((post) => (
-          <Post post={post} key={post.url} />
+          <Post post={post} key={post.id} />
         ))}
       </PostContainer>
     </LifeStylePage>

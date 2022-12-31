@@ -2,10 +2,10 @@ import { Switch, Route } from "react-router-dom";
 import GlobalStyle from "./shared/Global.styled";
 import HomeContainer from "./containers/HomeContainer";
 import PostDetailsContainer from "./containers/PostDetailsContainer";
-import LifeStyleContainer from "./containers/LifeStyleContainer";
-import MusicContainer from "./containers/MusicContainer";
-import TravelContainer from "./containers/TravelContainer";
-import PhotodiaryContainer from "./containers/PhotodiaryContainer";
+import CnbcContainer from "./containers/CnbcContainer";
+import CnnContainer from "./containers/CnnContainer";
+import BloombergContainer from "./containers/BloombergContainer";
+import ReutersContainer from "./containers/ReutersContainer";
 
 function App() {
   return (
@@ -18,17 +18,17 @@ function App() {
         <Route path="/posts/:id">
           <PostDetailsContainer />
         </Route>
-        <Route path="/lifestyle">
-          <LifeStyleContainer />
+        <Route path="/cnbc">
+          <CnbcContainer />
         </Route>
-        <Route path="/music">
-          <MusicContainer />
+        <Route path="/cnn">
+          <CnnContainer />
         </Route>
-        <Route path="/photodiary">
-          <PhotodiaryContainer />
+        <Route path="/reuters">
+          <ReutersContainer />
         </Route>
-        <Route path="/travel">
-          <TravelContainer />
+        <Route path="/bloomberg">
+          <BloombergContainer />
         </Route>
       </Switch>
     </>

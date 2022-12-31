@@ -11,14 +11,13 @@ import Header from "../../components/header/Header";
 import { PostModal } from "../../features/PostsSlice";
 import Loading from "../Loading";
 import ErrorPage from "../ErrorPage";
-import { parsePostIdFromUrl } from "../../helpers/parsePostIdFromUrl";
 
 function Home({
   posts,
   status,
   errorMessage,
 }: {
-  posts: PostModal[];
+  posts: PostModal[] | undefined;
   status?: string;
   errorMessage?: string | null;
 }) {
@@ -53,12 +52,9 @@ function Home({
           {status === "pending" && <Loading />}
         </Status>
         <PostContainer>
-          {posts.map((post) => {
+          {posts?.map((post) => {
             return (
-              <StyledLink
-                to={`/posts/${parsePostIdFromUrl(post.url).toString()}`}
-                key={post.url}
-              >
+              <StyledLink to={`/posts/${post.id}`} key={post.id}>
                 <Post post={post} />
               </StyledLink>
             );
